@@ -1,3 +1,40 @@
+#System
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+*.tmp
+
+# 备份文件
+*~
+*.backup
+*.bak
+*.swp
+*.swo
+*.old
+
+# 依赖目录
+3rdparty/
+*.depend
+*.includes
+*.dep
+*.deps
+*.dir
+*.dirstamp
+*.tmp
+*.stamp
+*.cache
+
+# 构建目录
+build/
+*/build/
+*/*/build/
+
+# 编辑器配置文件
+.vscode/
+.qtcreator/*
+
 # C++ objects and libs
 *.slo
 *.lo
@@ -26,8 +63,6 @@ qrc_*.cpp
 ui_*.h
 *.qmlc
 *.jsc
-.qtcreator/*
-build/*
 Makefile*
 #*build-*
 
