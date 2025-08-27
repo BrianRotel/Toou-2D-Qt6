@@ -62,8 +62,10 @@ Item {
         onSourceChanged: {
             if (source.indexOf("FA") === 0) {
                 content_text.text = T2D.awesomeFromKey(source)
+                // console.log(`@@FA ${JSON.stringify(content_text.text)}`)
             } else if (source.charAt(0) !== "\\") {
                 content_text.text = T2D.awesomeFromValue(source)
+                // console.log(`@@!FA ${JSON.stringify(content_text.text)}`)
             } else {
                 content_text.text = source
             }

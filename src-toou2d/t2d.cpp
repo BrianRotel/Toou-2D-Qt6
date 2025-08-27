@@ -133,7 +133,7 @@ void T2D::initializeEngine(QQmlEngine *engine, const char *uri)
     Q_UNUSED(uri)
     m_engine = engine;
     QFontDatabase::addApplicationFont(":/net.toou.2d/resource/font/fontawesome-webfont.ttf");
-    engine->rootContext()->setContextProperty("_root_window_",nullptr);
+    engine->rootContext()->setContextProperty("_root_window_", nullptr);
 }
 
 void T2D::initWorld(T2DWorld *world)
@@ -180,9 +180,8 @@ QString T2D::awesomeFromKey(const QString &key)
             key.toStdString().c_str()));
 #else
         // Qt 6: 需要显式转换
-        int charCode = Toou2D_Awesome::staticMetaObject.enumerator(index).keysToValue(
-            key.toUtf8().constData());
-
+        int charCode = Toou2D_Awesome::staticMetaObject.enumerator(index)
+                           .keysToValue(key.toStdString().c_str());
         if (charCode < 0) {
             return QString();
         }
@@ -206,7 +205,8 @@ QString T2D::awesomeFromValue(int type)
 
 QStringList T2D::awesomelist()
 {
-    QMetaEnum enumType = Toou2D_Awesome::staticMetaObject.enumerator(Toou2D_Awesome::staticMetaObject.indexOfEnumerator("Toou2D_AwesomeType"));
+    QMetaEnum enumType = Toou2D_Awesome::staticMetaObject.enumerator(
+        Toou2D_Awesome::staticMetaObject.indexOfEnumerator("Toou2D_AwesomeType"));
     QStringList list;
     for(int i=0; i < enumType.keyCount(); ++i){
         list.append(enumType.key(i)); //enumType.value(i)
