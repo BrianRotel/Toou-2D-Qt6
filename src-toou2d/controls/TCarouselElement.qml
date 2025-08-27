@@ -4,7 +4,7 @@ import Toou2D 1.0
 /*! TODO */
 TObject {
 
-    property string imageSource;
+    property string imageSource
 
-    property var otherData;
+    property var otherData
 }

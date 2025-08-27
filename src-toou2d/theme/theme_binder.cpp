@@ -1,8 +1,7 @@
 #include "theme_binder.h"
+#include "ThemeManager.h"
 #include <QDebug>
 #include <QMetaMethod>
-#include <QTimer>
-#include "ThemeManager.h"
 /*!
   \class ThemeBinder
 
@@ -15,30 +14,19 @@ ThemeBinder::ThemeBinder(QObject *parent) : QObject(parent)
     setEnabled(true);
 
     m_dynamicListener << "width" << "height" << "x" << "y";
-    // 使用单次定时器延迟初始化
-    QTimer::singleShot(0, this, &ThemeBinder::initializeLater);
-
-    connect(
-        this,
-        &ThemeBinder::stateChanged,
-        this,
-        [=] {
-            if (m_stateAsynchronous && !ThemeManager::getInstance()->appThemeInvalid()) {
-                onRefreshPropertys();
-            }
-        },
-        Qt::QueuedConnection);
-}
-
-void ThemeBinder::initializeLater()
-{
-    // 现在对象已完全构造
-    const QMetaObject *metaObj = this->metaObject();
+    const QMetaObject* metaObj = this->metaObject();
     int propertyCnt = metaObj->propertyCount();
-    for (int i = 0; i < propertyCnt; ++i) {
+    for ( int i = 0; i < propertyCnt; ++ i )
+    {
         QMetaProperty mproperty = metaObj->property(i);
         m_propertys_initfilter.append(mproperty.name());
     }
+
+    connect(this,&ThemeBinder::stateChanged,this,[=]{
+        if(m_stateAsynchronous && !ThemeManager::getInstance()->appThemeInvalid()){
+            onRefreshPropertys();
+        }
+    },Qt::QueuedConnection);
 }
 
 void ThemeBinder::onPropertyChanged()

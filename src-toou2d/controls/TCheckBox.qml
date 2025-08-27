@@ -4,181 +4,179 @@ import Toou2D 1.0
 // 多选框
 //    单独使用可以表示两种状态之间的切换
 /*! TODO */
-Item{
-    id:toou2d_checkbox;
-    width:  contentLoader.width  + padding;
-    height: contentLoader.height + padding;
+Item {
+    id: toou2d_checkbox
+    width: contentLoader.width + padding
+    height: contentLoader.height + padding
 
-    property alias checked: toou2d_mouearea.checked;
+    property alias checked: toou2d_mouearea.checked
 
-    property int   padding: 20;
+    property int padding: 20
 
-    property int   spacing: 5;
+    property int spacing: 5
 
-    property int   iconPosition : TPosition.Left;
+    property int iconPosition: TPosition.Left
 
-    property alias icon: micon;
+    property alias icon: micon
 
-    property alias iconChecked: miconChecked;
+    property alias iconChecked: miconChecked
 
-    property alias label: mlabel;
+    property alias label: mlabel
 
-    property alias theme: mtheme;
+    property alias theme: mtheme
 
-    property alias background: mbackground;
+    property alias background: mbackground
 
-    property alias border: bg.border;
+    property alias border: bg.border
 
-    property Component iconComponent;
+    property Component iconComponent
 
     iconComponent: {
-        if(!micon.source)
-            return null;
+        if (!micon.source)
+            return null
+        else if (micon.type === TIconType.Awesome)
+            return awesomeiconComponent
 
-        else if(micon.type === TIconType.Awesome)
-            return awesomeiconComponent;
-
-        return svgComponent;
+        return svgComponent
     }
 
     state: {
-        if(!enabled){
-            return "disabled";
-        }
-        else if(checked){
+        if (!enabled) {
+            return "disabled"
+        } else if (checked) {
             return "checked"
         }
-        return "none";
+        return "none"
     }
 
-    TRectangle{
-        id:bg;
-        anchors.fill: parent;
-        color:   mbackground.color;
-        visible: mbackground.visible;
-        radius:  mbackground.radius;
-        border.color: Qt.darker(bg.color,1.1);
+    TRectangle {
+        id: bg
+        anchors.fill: parent
+        color: mbackground.color
+        visible: mbackground.visible
+        radius: mbackground.radius
+        border.color: Qt.darker(bg.color, 1.1)
 
         theme.parent: mtheme
-        theme.childName: "bg";
+        theme.childName: "bg"
     }
 
-    TMouseArea{
-        id:toou2d_mouearea;
-        anchors.fill: parent;
-        checkable: true;
-        checked:   false;
+    TMouseArea {
+        id: toou2d_mouearea
+        anchors.fill: parent
+        checkable: true
+        checked: false
     }
 
-    TGadgetBackground{
-        id:mbackground
-        color: "#ECF5FF";
-        radius: 4;
-        visible: false;
+    TGadgetBackground {
+        id: mbackground
+        color: "#ECF5FF"
+        radius: 4
+        visible: false
     }
 
-    TGadgetLabel{
-        id:mlabel;
+    TGadgetLabel {
+        id: mlabel
         text: "TCheckBox"
         color: toou2d_checkbox.enabled ? "#3D3D3D" : "#9D9D9D"
     }
 
-    TGadgetIcon{
-        id:micon
-        width:  18;
-        height: 18;
-        type:   TIconType.Awesome;
+    TGadgetIcon {
+        id: micon
+        width: 18
+        height: 18
+        type: TIconType.Awesome
         source: TAwesomeType.FA_square_o
         color: toou2d_checkbox.enabled ? "#46A0FC" : "#9D9D9D"
     }
 
-    TGadgetIcon{
-        id:miconChecked
-        width:  18;
-        height: 18;
-        type:   TIconType.Awesome;
+    TGadgetIcon {
+        id: miconChecked
+        width: 18
+        height: 18
+        type: TIconType.Awesome
         source: TAwesomeType.FA_check_square
         color: toou2d_checkbox.enabled ? "#46A0FC" : "#9D9D9D"
     }
 
-    Loader{
-        id:contentLoader;
+    Loader {
+        id: contentLoader
         sourceComponent: contentRowLayoutItem
-        anchors.centerIn: parent;
+        anchors.centerIn: parent
     }
 
-    Component{
-        id:contentRowLayoutItem;
-        Row{
-            id:row
+    Component {
+        id: contentRowLayoutItem
+        Row {
+            id: row
             spacing: toou2d_checkbox.spacing
-            layoutDirection: toou2d_checkbox.icon.position === TPosition.Left ? Qt.LeftToRight : Qt.RightToLeft;
+            layoutDirection: toou2d_checkbox.icon.position
+                             === TPosition.Left ? Qt.LeftToRight : Qt.RightToLeft
 
-            Loader{
-                id:icon
+            Loader {
+                id: icon
                 sourceComponent: iconComponent
-                enabled: false;
-                anchors.verticalCenter: row.verticalCenter;
+                enabled: false
+                anchors.verticalCenter: row.verticalCenter
             }
 
             TLabel {
-                id:label;
-                enabled: false;
+                id: label
+                enabled: false
                 theme.parent: mtheme
                 theme.childName: "label"
 
-                text:  toou2d_checkbox.label.text;
-                font:  toou2d_checkbox.label.font;
-                color: toou2d_checkbox.label.color;
-                anchors.verticalCenter: row.verticalCenter;
+                text: toou2d_checkbox.label.text
+                font: toou2d_checkbox.label.font
+                color: toou2d_checkbox.label.color
+                anchors.verticalCenter: row.verticalCenter
             }
         }
     }
 
-    Component{
-        id:awesomeiconComponent
-        TAwesomeIcon{
-            enabled: false;
-            theme.enabled: false;
-            source: !checked ? micon.source : miconChecked.source;
-            color:  !checked ? micon.color  : miconChecked.color;
-            width:  !checked ? micon.width  : miconChecked.width;
-            height: !checked ? micon.height : miconChecked.height;
+    Component {
+        id: awesomeiconComponent
+        TAwesomeIcon {
+            enabled: false
+            theme.enabled: false
+            source: !checked ? micon.source : miconChecked.source
+            color: !checked ? micon.color : miconChecked.color
+            width: !checked ? micon.width : miconChecked.width
+            height: !checked ? micon.height : miconChecked.height
         }
     }
 
-    Component{
-        id:svgComponent
-        TSVGIcon{
-            enabled: false;
-            theme.enabled: false;
-            source: !checked ? micon.source : miconChecked.source;
-            color:  !checked ? micon.color  : miconChecked.color;
-            width:  !checked ? micon.width  : miconChecked.width;
-            height: !checked ? micon.height : miconChecked.height;
+    Component {
+        id: svgComponent
+        TSVGIcon {
+            enabled: false
+            theme.enabled: false
+            source: !checked ? micon.source : miconChecked.source
+            color: !checked ? micon.color : miconChecked.color
+            width: !checked ? micon.width : miconChecked.width
+            height: !checked ? micon.height : miconChecked.height
         }
     }
 
+    TThemeBinder {
+        id: mtheme
+        className: "TCheckBox"
+        state: toou2d_checkbox.state
 
-    TThemeBinder{
-        id:mtheme
-        className: "TCheckBox";
-        state: toou2d_checkbox.state;
-
-        TThemeBinder{
+        TThemeBinder {
             childName: "icon"
-            property alias color:  micon.color;
-            property alias width:  micon.width;
-            property alias height: micon.height;
+            property alias color: micon.color
+            property alias width: micon.width
+            property alias height: micon.height
         }
 
-        TThemeBinder{
+        TThemeBinder {
             childName: "icon.checked"
-            property alias color:  miconChecked.color;
-            property alias width:  miconChecked.width;
-            property alias height: miconChecked.height;
+            property alias color: miconChecked.color
+            property alias width: miconChecked.width
+            property alias height: miconChecked.height
         }
 
-        Component.onCompleted: initialize();
+        Component.onCompleted: initialize()
     }
 }

@@ -12,128 +12,131 @@ import Toou2D 1.0
 //        }
 //    }
 /*! TODO */
-TPopover{
-    id:toou2d_popover;
+TPopover {
+    id: toou2d_popover
 
-    signal triggered(var modelData);
+    signal triggered(var modelData)
 
-    property alias groupBackground: mGroupBG;
+    property alias groupBackground: mGroupBG
 
-    property alias groupLabel: mGroupLabel;
+    property alias groupLabel: mGroupLabel
 
-    property alias itemLabel:mItemLabel
+    property alias itemLabel: mItemLabel
 
-    property alias itemBackground:mItemBg;
+    property alias itemBackground: mItemBg
 
-    property alias activeItemLabel: mActItemLabel;
+    property alias activeItemLabel: mActItemLabel
 
-    property alias itemIcon: mItemIcon;
+    property alias itemIcon: mItemIcon
 
-    property alias activeItemIcon: mActItemIcon;
+    property alias activeItemIcon: mActItemIcon
 
-    property Component groupComponent: defaultGroupComponent;
+    property Component groupComponent: defaultGroupComponent
 
-    property Component itemComponent :defaultItemComponent;
+    property Component itemComponent: defaultItemComponent
 
-    padding: 8;
+    padding: 8
 
-    bodyWidth: 150;
+    bodyWidth: 150
 
-    bodyComponent: menubodyComponent;
+    bodyComponent: menubodyComponent
 
     theme.className: "TPopoverMenu"
 
-    default property list<QtObject> elementlist;
+    default property list<QtObject> elementlist
 
-    function addElement(obj){
-        _mprivate.dynamicList.push(obj);
+    function addElement(obj) {
+        _mprivate.dynamicList.push(obj)
     }
 
-    TGadgetBackground{
-        id:mGroupBG;
+    TGadgetBackground {
+        id: mGroupBG
         color: bodyBackground.color
     }
 
-    TGadgetLabel{
-        id:mGroupLabel;
+    TGadgetLabel {
+        id: mGroupLabel
         font.pixelSize: TPixelSizePreset.PH7
     }
 
-    TGadgetLabel{
-        id:mItemLabel;
+    TGadgetLabel {
+        id: mItemLabel
         color: "#2D2D2D"
-        property bool bold:      font.bold;
-        property int  pixelSize: font.pixelSize;
+        property bool bold: font.bold
+        property int pixelSize: font.pixelSize
     }
 
-    TGadgetBackground{
-        id:mItemBg;
-        color: "#409EFF";
+    TGadgetBackground {
+        id: mItemBg
+        color: "#409EFF"
     }
 
-    TGadgetLabel{
-        id:mActItemLabel;
+    TGadgetLabel {
+        id: mActItemLabel
         color: "#FFF"
-        property bool bold:      font.bold;
-        property int  pixelSize: font.pixelSize;
+        property bool bold: font.bold
+        property int pixelSize: font.pixelSize
     }
 
-    TGadgetIcon{
-        id:mItemIcon
+    TGadgetIcon {
+        id: mItemIcon
     }
 
-    TGadgetIcon{
-        id:mActItemIcon
+    TGadgetIcon {
+        id: mActItemIcon
         color: "#FFF"
     }
 
-
-    Component{
-        id:menubodyComponent;
-        TRectangle{
-            width:  bodyWidth  + border.width * 4;
-            height: crowlayout.height + padding;
-            color:  bodyBackground.color;
+    Component {
+        id: menubodyComponent
+        TRectangle {
+            width: bodyWidth + border.width * 4
+            height: crowlayout.height + padding
+            color: bodyBackground.color
             radius: bodyBackground.radius
-            border.width: bodyBorder.width;
-            border.color: bodyBorder.color;
+            border.width: bodyBorder.width
+            border.color: bodyBorder.color
 
-            theme.parent: toou2d_popover.theme;
-            theme.childName: "body";
+            theme.parent: toou2d_popover.theme
+            theme.childName: "body"
 
-            ListModel{ id:listmodel }
+            ListModel {
+                id: listmodel
+            }
 
-            Column{
-                id:crowlayout;
-                anchors.centerIn: parent;
+            Column {
+                id: crowlayout
+                anchors.centerIn: parent
 
-                Repeater{
+                Repeater {
                     objectName: "repeater"
-                    id:repeater
-                    model:{
-                        for(var i in elementlist){
-                            if(elementlist[i].type === "item" || elementlist[i].type === "group")
-                                listmodel.append(elementlist[i]);
+                    id: repeater
+                    model: {
+                        for (var i in elementlist) {
+                            if (elementlist[i].type === "item"
+                                    || elementlist[i].type === "group")
+                                listmodel.append(elementlist[i])
                         }
 
-                        for(var l in _mprivate.dynamicList){
-                            if(_mprivate.dynamicList[l].type === "item" || _mprivate.dynamicList[l].type === "group")
-                            listmodel.append(_mprivate.dynamicList[l]);
+                        for (var l in _mprivate.dynamicList) {
+                            if (_mprivate.dynamicList[l].type === "item"
+                                    || _mprivate.dynamicList[l].type === "group")
+                                listmodel.append(_mprivate.dynamicList[l])
                         }
 
-                        return listmodel;
+                        return listmodel
                     }
 
-                    delegate: Loader{
-                        id:load
-                        property int modelIndex: index;
-                        property var modelData:  model;
-                        width: toou2d_popover.bodyWidth;
-                        sourceComponent:{
-                            if(model.type === "item"){
-                                return itemComponent;
+                    delegate: Loader {
+                        id: load
+                        property int modelIndex: index
+                        property var modelData: model
+                        width: toou2d_popover.bodyWidth
+                        sourceComponent: {
+                            if (model.type === "item") {
+                                return itemComponent
                             }
-                            return groupComponent;
+                            return groupComponent
                         }
                     }
                 }
@@ -141,123 +144,128 @@ TPopover{
         }
     }
 
-    Component{
-        id:defaultGroupComponent
-        Item{
-            id:group
-            height:20;
-            TRectangle{
-                anchors.fill: parent;
-                color:   mGroupBG.color;
-                radius:  mGroupBG.radius;
-                visible: mGroupBG.visible;
+    Component {
+        id: defaultGroupComponent
+        Item {
+            id: group
+            height: 20
+            TRectangle {
+                anchors.fill: parent
+                color: mGroupBG.color
+                radius: mGroupBG.radius
+                visible: mGroupBG.visible
 
-                theme.parent: toou2d_popover.theme;
-                theme.childName: "group.bg";
+                theme.parent: toou2d_popover.theme
+                theme.childName: "group.bg"
             }
 
-            TLabel{
-                anchors.verticalCenter: group.verticalCenter;
-                anchors.left: group.left;
-                anchors.leftMargin: 15;
-                text:     modelData.text;
-                color:    mGroupLabel.color
-                font.bold:mGroupLabel.font.bold;
-                font.pixelSize: mGroupLabel.font.pixelSize;
+            TLabel {
+                anchors.verticalCenter: group.verticalCenter
+                anchors.left: group.left
+                anchors.leftMargin: 15
+                text: modelData.text
+                color: mGroupLabel.color
+                font.bold: mGroupLabel.font.bold
+                font.pixelSize: mGroupLabel.font.pixelSize
 
-                theme.parent: toou2d_popover.theme;
-                theme.childName: "group.label";
+                theme.parent: toou2d_popover.theme
+                theme.childName: "group.label"
             }
         }
     }
 
-    Component{
-        id:defaultItemComponent;
-        Item{
-            property bool active: _mprivate.actieIndex === modelIndex;
-            height: 26;
-            TRectangle{
-                anchors.fill: parent;
-                color:  mItemBg.color;
-                radius: mItemBg.radius;
-                visible:active;
-                z:-1
+    Component {
+        id: defaultItemComponent
+        Item {
+            property bool active: _mprivate.actieIndex === modelIndex
+            height: 26
+            TRectangle {
+                anchors.fill: parent
+                color: mItemBg.color
+                radius: mItemBg.radius
+                visible: active
+                z: -1
 
-                theme.parent: toou2d_popover.theme;
-                theme.childName: "item.bg";
+                theme.parent: toou2d_popover.theme
+                theme.childName: "item.bg"
             }
 
-            TIconButton{
-                id:btn;
-                width:  parent.width;
-                height: parent.height;
+            TIconButton {
+                id: btn
+                width: parent.width
+                height: parent.height
                 spacing: 10
-                padding: 15;
-                hoverEnabled:  true
-                contentHAlign: Qt.AlignLeft;
-                backgroundComponent: null;
+                padding: 15
+                hoverEnabled: true
+                contentHAlign: Qt.AlignLeft
+                backgroundComponent: null
 
-                icon.source: modelData.iconSource;
-                icon.color:  active ? mActItemIcon.color : mItemIcon.color;
-                icon.width:  active ? mActItemIcon.width : mItemIcon.width;
-                icon.height: active ? mActItemIcon.height: mItemIcon.height;
+                icon.source: modelData.iconSource
+                icon.color: active ? mActItemIcon.color : mItemIcon.color
+                icon.width: active ? mActItemIcon.width : mItemIcon.width
+                icon.height: active ? mActItemIcon.height : mItemIcon.height
 
-                label.text:  modelData.text;
-                label.color: active ? mActItemLabel.color : mItemLabel.color;
-                label.font.pixelSize: active ? mActItemLabel.pixelSize : mItemLabel.pixelSize;
-                label.font.bold: active ? mActItemLabel.bold : mItemLabel.bold;
+                label.text: modelData.text
+                label.color: active ? mActItemLabel.color : mItemLabel.color
+                label.font.pixelSize: active ? mActItemLabel.pixelSize : mItemLabel.pixelSize
+                label.font.bold: active ? mActItemLabel.bold : mItemLabel.bold
 
                 onStateChanged: {
-                    _mprivate.actieIndex = (state === "hovering" || state === "pressed") ?  modelIndex : -1;}
-                onClicked:{ triggered(modelData);toou2d_popover.close();}
+                    _mprivate.actieIndex = (state === "hovering"
+                                            || state === "pressed") ? modelIndex : -1
+                }
+                onClicked: {
+                    triggered(modelData)
+                    toou2d_popover.close()
+                }
 
-                theme.enabled: false;
+                theme.enabled: false
             }
         }
     }
 
-    TObject{
-        id:_mprivate
+    TObject {
+        id: _mprivate
 
-        property int actieIndex: -1;
-        property var dynamicList : [];
+        property int actieIndex: -1
+        property var dynamicList: []
 
-        TThemeBinder{
-            parent: toou2d_popover.theme;
+        TThemeBinder {
+            parent: toou2d_popover.theme
 
-            TThemeBinder{
-                target: mActItemLabel;
+            TThemeBinder {
+                target: mActItemLabel
                 childName: "active.item.label"
-                property color  color:      mActItemLabel.color;
-                property bool   bold:       mActItemLabel.bold;
-                property int    pixelSize:  mActItemLabel.pixelSize;
+                property color color: mActItemLabel.color
+                property bool bold: mActItemLabel.bold
+                property int pixelSize: mActItemLabel.pixelSize
             }
 
-            TThemeBinder{
-                target: mActItemIcon;
+            TThemeBinder {
+                target: mActItemIcon
                 childName: "active.item.icon"
-                property color color:  mActItemIcon.color;
-                property int   width:  mActItemIcon.width;
-                property int   height: mActItemIcon.height;
+                property color color: mActItemIcon.color
+                property int width: mActItemIcon.width
+                property int height: mActItemIcon.height
             }
 
-            TThemeBinder{
-                target: mItemLabel;
+            TThemeBinder {
+                target: mItemLabel
                 childName: "item.label"
-                property color  color:      mItemLabel.color;
-                property bool   bold:       mItemLabel.bold;
-                property int    pixelSize:  mItemLabel.pixelSize;
+                property color color: mItemLabel.color
+                property bool bold: mItemLabel.bold
+                property int pixelSize: mItemLabel.pixelSize
             }
 
-            TThemeBinder{
-                target: mItemIcon;
+            TThemeBinder {
+                target: mItemIcon
                 childName: "item.icon"
-                property color color:  mItemIcon.color;
-                property int   width:  mItemIcon.width;
-                property int   height: mItemIcon.height;
+                property color color: mItemIcon.color
+                property int width: mItemIcon.width
+                property int height: mItemIcon.height
             }
 
-            Component.onCompleted: initialize();
+            Component.onCompleted: initialize()
         }
     }
 }

@@ -6,31 +6,30 @@ import Toou2D 1.0
 Text {
     id: toou2d_label
 
-    property alias theme: mtheme;
+    property alias theme: mtheme
 
     color: "#303133"
 
-    TThemeBinder{
-        id:mtheme
+    TThemeBinder {
+        id: mtheme
         className: "TLabel"
-        state: toou2d_label.state;
+        state: toou2d_label.state
 
-        property alias color: toou2d_label.color;
-        property alias text:  toou2d_label.text;
+        property alias color: toou2d_label.color
+        property alias text: toou2d_label.text
 
-        property alias bold:     toou2d_wrapper_font.bold;
-        property alias family:   toou2d_wrapper_font.family;
-        property alias pixelSize:toou2d_wrapper_font.pixelSize;
+        property alias bold: toou2d_wrapper_font.bold
+        property alias family: toou2d_wrapper_font.family
+        property alias pixelSize: toou2d_wrapper_font.pixelSize
 
-        Component.onCompleted: initialize();
+        Component.onCompleted: initialize()
     }
 
-    TObject{
-        id:toou2d_wrapper_font;
+    TObject {
+        id: toou2d_wrapper_font
 
-        property alias bold:      toou2d_label.font.bold;
-        property alias family:    toou2d_label.font.family;
-        property alias pixelSize: toou2d_label.font.pixelSize;
+        property alias bold: toou2d_label.font.bold
+        property alias family: toou2d_label.font.family
+        property alias pixelSize: toou2d_label.font.pixelSize
     }
-
 }

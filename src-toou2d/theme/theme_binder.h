@@ -48,8 +48,6 @@ public:
     QStringList dynamicListener()    const;
 
 public slots:
-    void initializeLater();
-public slots:
     void setStateAsynchronous(bool stateAsynchronous);
     void setDynamicListener(QStringList dynamicListener);
 
@@ -65,6 +63,7 @@ signals:
     void stateAsynchronousChanged();
 
     void dynamicListenerChanged(QStringList dynamicListener);
+
 protected slots:
     void setFilterPropertyName(QStringList filterPropertyName);
     void setParent(ThemeBinder* parent);

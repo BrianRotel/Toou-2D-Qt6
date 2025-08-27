@@ -2,11 +2,11 @@ import QtQuick 2.0
 import Toou2D 1.0
 
 /*! TODO */
-TObject{
+TObject {
 
-    property string text;
+    property string text
 
-    property string iconSource;
+    property string iconSource
 
-    property var    otherData;
+    property var otherData
 }

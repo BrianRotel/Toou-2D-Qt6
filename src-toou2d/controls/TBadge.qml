@@ -10,57 +10,57 @@ import Toou2D 1.0
 //    }
 /*! TODO */
 TRectangle {
-    id:toou2d_badge;
+    id: toou2d_badge
     theme.className: "TBadge"
 
-    property int  padding: 6;
+    property int padding: 6
 
-    property int  value : 0;
+    property int value: 0
 
-    property int  max: 0;
+    property int max: 0
 
-    property alias label: gadget_label;
+    property alias label: gadget_label
 
-    radius: height / 2;
+    radius: height / 2
 
     color: "#F56C6C"
 
-    border.width: 0;
+    border.width: 0
 
-    border.color: "#CB4C4C";
+    border.color: "#CB4C4C"
 
     width: {
-        if(content_label.contentWidth + padding < height){
-            return height;
+        if (content_label.contentWidth + padding < height) {
+            return height
         }
-        return content_label.contentWidth + padding * 1.6;
+        return content_label.contentWidth + padding * 1.6
     }
 
     height: {
-        return padding + content_label.contentHeight;
+        return padding + content_label.contentHeight
     }
 
-    TLabel{
-        id:content_label;
+    TLabel {
+        id: content_label
         theme.childName: "label"
-        theme.className:  toou2d_badge.theme.className;
-        theme.state:      toou2d_badge.state;
+        theme.className: toou2d_badge.theme.className
+        theme.state: toou2d_badge.state
 
-        text:  gadget_label.text;
-        color: gadget_label.color;
-        font:  gadget_label.font;
+        text: gadget_label.text
+        color: gadget_label.color
+        font: gadget_label.font
 
-        anchors.centerIn: parent;
+        anchors.centerIn: parent
     }
 
-    TGadgetLabel{
-        id:gadget_label;
+    TGadgetLabel {
+        id: gadget_label
         color: "#FFFFFF"
         text: {
-            if(max > 0 && value > max)
-                return max + "+";
+            if (max > 0 && value > max)
+                return max + "+"
 
-            return value;
+            return value
         }
     }
 }
