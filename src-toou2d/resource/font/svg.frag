@@ -17,21 +17,13 @@ layout(std140, binding = 0) uniform UniformBlock {
 layout(binding = 1) uniform sampler2D source;
 
 void main() {
+    // 调试代码：在特定条件下显示不同颜色
     // 使用现代纹理采样函数
-    vec4 toou2d_svg_color = texture(source, qt_TexCoord0);
-
-    // 计算源颜色分量 (防止除零)
-    vec3 srcRgb = toou2d_svg_color.rgb / max(toou2d_svg_color.a, 0.00390625);
-
-    // 计算目标颜色分量 (防止除零)
-    vec3 dstRgb = color.rgb / max(color.a, 0.00390625);
-
-    // 混合颜色 (使用线性插值)
-    vec3 mixedRgb = mix(srcRgb, dstRgb, color.a);
-
-    // 应用原始 alpha 并预乘
-    vec4 result = vec4(mixedRgb * toou2d_svg_color.a, toou2d_svg_color.a);
-
-    // 应用全局不透明度
-    fragColor = result * qt_Opacity;
+    // vec4 toou2d_svg_color = texture(source, qt_TexCoord0);
+    // fragColor = vec4(mix(toou2d_svg_color.rgb/max(toou2d_svg_color.a, 0.00390625), color.rgb/max(color.a, 0.00390625), color.a) * toou2d_svg_color.a, toou2d_svg_color.a) * qt_Opacity;
+    // #ifdef DEBUG
+    // if (qt_TexCoord0.x < 0.1 && qt_TexCoord0.y < 0.1) {
+    fragColor = vec4(1.0, 0.0, 0.0, 1.0); // 显示红色
+    // }
+    // #endif
 }

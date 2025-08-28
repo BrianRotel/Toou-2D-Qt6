@@ -31,23 +31,28 @@ Item {
         anchors.fill: toou2d_svgicon
         source: toou2d_svgicon.source
         smooth: toou2d_svgicon.smooth
-        visible: false
-        enabled: false
+        visible: true
+        enabled: true
     }
 
     ShaderEffect {
         id: shaderItem
         property variant source: image
         property color color: toou2d_svgicon.color
-        enabled: false
-        fragmentShader: "qrc:/net.toou.2d/resource/font/svg.qsb"
+        enabled: true
+        fragmentShader: "qrc:/net.toou.2d/resource/font/svg.frag.qsb"
         anchors.fill: parent
         onStatusChanged: {
+            // console.log(`@@ TSVGIcon ShaderEffect onStatusChanged status:${shaderItem.status}`)
             if (status === ShaderEffect.Error) {
                 console.log("Shader error: " + log)
             }
         }
         visible: toou2d_svgicon.status === Image.Ready
+        onVisibleChanged: {
+
+            // console.log(`@@ TSVGIcon ShaderEffect onVisibleChanged visible:${shaderItem.visible}`)
+        }
     }
 
     TThemeBinder {

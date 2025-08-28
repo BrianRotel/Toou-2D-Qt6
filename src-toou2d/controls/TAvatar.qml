@@ -55,8 +55,8 @@ Item {
 
     Image {
         id: sourceImage
-        visible: false
-        enabled: false
+        visible: true
+        enabled: true
         anchors.fill: parent
         antialiasing: toou2d_avatar.smooth
         smooth: toou2d_avatar.smooth

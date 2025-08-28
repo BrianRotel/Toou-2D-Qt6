@@ -49,7 +49,9 @@
         <file>controls/TPopover.qml</file>
         <file>controls/TDialogBasic.qml</file>
         <file>controls/TMask.qml</file>
-        <file>resource/font/mask.qsb</file>
-        <file>resource/font/svg.qsb</file>
+        <file>resource/font/mask.cso</file>
+        <file>resource/font/svg.cso</file>
+        <file>resource/font/mask.frag.qsb</file>
+        <file>resource/font/svg.frag.qsb</file>
     </qresource>
 </RCC>

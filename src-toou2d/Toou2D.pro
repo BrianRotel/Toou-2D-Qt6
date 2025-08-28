@@ -1,10 +1,24 @@
-QT          += qml quick svg
+QT          += qml quick svg shadertools
 CONFIG      += plugin c++11
 TEMPLATE    = lib
 TARGET      = Toou2D
 TARGET      = $$qtLibraryTarget($$TARGET)
 uri         = Toou2D
 
+# You can make your code fail to compile if it uses deprecated APIs.
+# In order to do so, uncomment the following line.
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+SHADER_FILES = resource/font/mask.frag  resource/font/svg.frag
+for(shader, SHADER_FILES) {
+   # 定义输出文件
+   OUTPUT_FILE = $${shader}.qsb
+   # 构建编译命令
+   COMPILE_CMD = qsb --glsl \"100 es,120,150\" --hlsl 50 --msl 12 -o $${OUTPUT_FILE} $${shader}
+   # 打印调试信息（可选）
+   message(Compiling $${shader} to $${OUTPUT_FILE})
+   # 执行编译命令
+   system($${COMPILE_CMD})
+}
 ##########################################
 CONFIG += sharedlib  # staticlib or sharedlib
 #** 多次切换编译构建模式，建议先清理缓存。项目右键->清理
@@ -20,7 +34,6 @@ CONFIG += sharedlib  # staticlib or sharedlib
 
 RESOURCES += \
     t2d_res.qrc
-
 
 # Input
 HEADERS += \
