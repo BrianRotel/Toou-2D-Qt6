@@ -29,7 +29,7 @@ Item {
                 font.pixelSize: 10
                 anchors.bottom: parent.bottom
                 anchors.horizontalCenter: parent.horizontalCenter
-                function onContentWidthChanged(contentWidth) {
+                onContentWidthChanged: {
                     if (contentWidth > parent.width) {
                         text = text.slice(0, 10) + ".."
                     }

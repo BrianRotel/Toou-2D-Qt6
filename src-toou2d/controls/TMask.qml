@@ -17,7 +17,7 @@ Item {
     ShaderEffectSource {
         id: msource
         live: toou_mask.live
-        visible: true
+        visible: false
         hideSource: toou_mask.hideSource
         smooth: toou_mask.smooth
         sourceItem: sourceItem
@@ -26,7 +26,7 @@ Item {
     ShaderEffectSource {
         id: mmask
         live: toou_mask.live
-        visible: true
+        visible: false
         hideSource: toou_mask.hideSource
         smooth: toou_mask.smooth
         sourceItem: maskItem
@@ -37,7 +37,6 @@ Item {
         anchors.fill: parent
         property variant source: msource
         property variant maskSource: mmask
-
         fragmentShader: "qrc:/net.toou.2d/resource/font/mask.frag.qsb"
     }
 }

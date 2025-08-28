@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Toou2D 1.0
+import Qt5Compat.GraphicalEffects
 
 /*!todo*/
 Item {
@@ -100,6 +101,11 @@ Item {
         maskItem: mask
     }
 
+    // OpacityMask {
+    //     anchors.fill: parent
+    //     source: barbg
+    //     maskSource: mask
+    // }
     TObject {
         id: _private
         property bool moveing: false

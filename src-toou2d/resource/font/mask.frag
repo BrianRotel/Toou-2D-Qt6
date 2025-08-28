@@ -1,4 +1,4 @@
-#version 450
+#version 440
 
 precision mediump float;
 
@@ -15,8 +15,7 @@ layout(std140, binding = 0) uniform UniformBlock {
 };
 
 void main() {
-    // fragColor = texture(source, qt_TexCoord0)
-    //             * texture(maskSource, qt_TexCoord0).a
-    //             * qt_Opacity;
-    fragColor = vec4(1.0, 0.0, 0.0, 1.0); // 显示红色
+    fragColor = texture(source, qt_TexCoord0.st)
+                * texture(maskSource, qt_TexCoord0.st).a
+                * qt_Opacity;
 }
