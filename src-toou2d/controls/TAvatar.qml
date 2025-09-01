@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import Toou2D 1.0
-import Qt5Compat.GraphicalEffects
+
+// import Qt5Compat.GraphicalEffects
 
 
 /*!
@@ -74,12 +75,16 @@ Item {
         smooth: true
         enabled: false
     }
-
-    OpacityMask {
-        anchors.fill: toou2d_avatar
-        source: sourceImage
-        maskSource: mask
+    TMask {
+        anchors.fill: parent
+        sourceItem: sourceImage
+        maskItem: mask
     }
+    // OpacityMask {
+    //     anchors.fill: toou2d_avatar
+    //     source: sourceImage
+    //     maskSource: mask
+    // }
     TRectangle {
         color: "transparent"
         radius: toou2d_avatar.radius

@@ -1,51 +1,49 @@
 import QtQuick 2.0
 import Toou2D 1.0
 
-Column{
-    spacing: 8;
+Column {
+    spacing: 8
 
-    Row{
-        id:layout
+    Row {
+        id: layout
         spacing: 5
 
-        TCheckBox{
+        TCheckBox {
             label.text: "Movie"
         }
 
-        TCheckBox{
+        TCheckBox {
             label.text: "Music"
-            checked: true;
+            checked: true
         }
 
-        TCheckBox{
+        TCheckBox {
             label.text: "Running"
         }
 
-        TCheckBox{
+        TCheckBox {
             label.text: "Fitness"
-            checked: true;
+            checked: true
         }
 
-        TCheckBox{
+        TCheckBox {
             label.text: "Sleeps"
-            checked: true;
-            enabled: false;
+            checked: true
+            enabled: false
         }
-
     }
 
-
-    Row{
+    Row {
         spacing: 15
 
         anchors.horizontalCenter: parent.horizontalCenter
-        TCheckBox{
-            id:cb
+        TCheckBox {
+            id: cb
             label.text: "C++"
-            checked: Math.random() > 0.5;
+            checked: Math.random() > 0.5
             iconPosition: TPosition.Reght
             background.visible: true
-            border.width: 1;
+            border.width: 1
             background.color: "#F0F9EB"
             theme.groupName: "cboxa"
             states: [
@@ -53,19 +51,19 @@ Column{
                     name: "checked"
                     PropertyChanges {
                         target: cb.border
-                        color:"#67C23A"
+                        color: "#67C23A"
                     }
                 }
             ]
         }
 
-        TCheckBox{
-            id:cb2
+        TCheckBox {
+            id: cb2
             label.text: "Lua"
-            checked: Math.random() > 0.5;
+            checked: Math.random() > 0.5
             iconPosition: TPosition.Reght
             background.visible: true
-            border.width: 1;
+            border.width: 1
             background.color: "#F0F9EB"
             theme.groupName: "cboxb"
             states: [
@@ -73,19 +71,19 @@ Column{
                     name: "checked"
                     PropertyChanges {
                         target: cb2.border
-                        color:"#67C23A"
+                        color: "#67C23A"
                     }
                 }
             ]
         }
 
-        TCheckBox{
-            id:cb3
+        TCheckBox {
+            id: cb3
             label.text: "QML"
-            checked: Math.random() > 0.5;
+            checked: Math.random() > 0.5
             iconPosition: TPosition.Reght
             background.visible: true
-            border.width: 1;
+            border.width: 1
             background.color: "#FDF6ED"
             theme.groupName: "cboxc"
             states: [
@@ -93,19 +91,19 @@ Column{
                     name: "checked"
                     PropertyChanges {
                         target: cb3.border
-                        color:"#E6A23C"
+                        color: "#E6A23C"
                     }
                 }
             ]
         }
 
-        TCheckBox{
-            id:cb0
+        TCheckBox {
+            id: cb0
             label.text: "JAVA"
-            checked: Math.random() > 0.5;
+            checked: Math.random() > 0.5
             iconPosition: TPosition.Reght
             background.visible: true
-            border.width: 1;
+            border.width: 1
             background.color: "#FDF6ED"
             theme.groupName: "cboxd"
             states: [
@@ -113,15 +111,10 @@ Column{
                     name: "checked"
                     PropertyChanges {
                         target: cb0.border
-                        color:"#E6A23C"
+                        color: "#E6A23C"
                     }
                 }
             ]
         }
-
-
-
-
     }
-
 }

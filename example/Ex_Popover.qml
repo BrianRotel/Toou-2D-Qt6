@@ -1,82 +1,79 @@
 import QtQuick 2.0
 import Toou2D 1.0
 
-Column{
-    Row{
+Column {
+    Row {
         spacing: 20
-        TButton{
-            id:button
+        TButton {
+            id: button
             height: 40
             label.text: "Loose"
             label.color: "#46A0FC"
-            onClicked: popover.openToGlobal(button,mouseX,mouseY)
+            onClicked: popover.openToGlobal(button, mouseX, mouseY)
         }
 
-        TButton{
-            id:bmenu
+        TButton {
+            id: bmenu
             height: 40
             label.text: "Popover Menu"
             label.color: "#46A0FC"
-            onClicked: popoverMenu.openToGlobal(bmenu,mouseX,mouseY)
+            onClicked: popoverMenu.openToGlobal(bmenu, mouseX, mouseY)
         }
 
-
-        TButton{
-            id:b2
+        TButton {
+            id: b2
             height: 40
             label.text: "Fixed"
             label.color: "#46A0FC"
-            onClicked: popover.openToGlobal(b2,0,b2.height)
+            onClicked: popover.openToGlobal(b2, 0, b2.height)
         }
     }
 
-    TPopover{
-        id:popover
+    TPopover {
+        id: popover
     }
 
-    TPopoverMenu{
-        id:popoverMenu
+    TPopoverMenu {
+        id: popoverMenu
 
-        TPopoverElement{
-            type:"group"
-            text: "BUILDING BLOCKS";
+        TPopoverElement {
+            type: "group"
+            text: "BUILDING BLOCKS"
         }
 
-        TPopoverElement{
+        TPopoverElement {
             iconSource: TAwesomeType.FA_apple
-            text:  "Request";
+            text: "Request"
         }
 
-        TPopoverElement{
+        TPopoverElement {
             iconSource: TAwesomeType.FA_android
-            text: "Collection";
+            text: "Collection"
         }
 
-        TPopoverElement{
+        TPopoverElement {
             iconSource: TAwesomeType.FA_git
-            text: "Environment";
+            text: "Environment"
         }
 
-        TPopoverElement{
-            type:"group"
-            text: "ADVANCED";
+        TPopoverElement {
+            type: "group"
+            text: "ADVANCED"
         }
 
-
-        TPopoverElement{
+        TPopoverElement {
             iconSource: TAwesomeType.FA_music
-            text: "Document";
+            text: "Document"
         }
 
-        TPopoverElement{
+        TPopoverElement {
             iconSource: TAwesomeType.FA_heartbeat
-            text: "Mock Server";
+            text: "Mock Server"
         }
 
-        TPopoverElement{
+        TPopoverElement {
             iconSource: TAwesomeType.FA_car
-            text: "Monitor";
+            text: "Monitor"
         }
-
     }
 }

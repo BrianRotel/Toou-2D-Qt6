@@ -3,22 +3,21 @@ import Toou2D 1.0
 
 Item {
 
-    Column{
+    Column {
         spacing: 30
-        anchors.centerIn: parent;
-        TLabel{
-            text: "Hello Toou2D";
-            font.pixelSize: 30;
-            font.bold: true;
-            anchors.horizontalCenter: parent.horizontalCenter;
+        anchors.centerIn: parent
+        TLabel {
+            text: "Hello Toou2D"
+            font.pixelSize: 30
+            font.bold: true
+            anchors.horizontalCenter: parent.horizontalCenter
         }
 
-        TButton{
-            width: 150;
+        TButton {
+            width: 150
             label.text: "Show time"
-            anchors.horizontalCenter: parent.horizontalCenter;
-            onClicked: begin();
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: begin()
         }
     }
-
 }

@@ -1,84 +1,81 @@
 import QtQuick 2.6
 import Toou2D 1.0
 
-TRectangle{
-    signal showMenu();
+TRectangle {
+    signal showMenu
     color: "#F8F8F8"
-    property string title: "Home";
+    property string title: "Home"
     theme.groupName: "topbar"
 
-    TIconButton{
-        width: height;
-        height: parent.height -1;
-        anchors.left: parent.left;
-        icon.source: TAwesomeType.FA_list;
-        icon.position: TPosition.Only;
-        backgroundComponent: null;
+    TIconButton {
+        width: height
+        height: parent.height - 1
+        anchors.left: parent.left
+        icon.source: TAwesomeType.FA_list
+        icon.position: TPosition.Only
+        backgroundComponent: null
         theme.groupName: "topbarbtn"
-        onClicked: showMenu();
+        onClicked: showMenu()
     }
 
     TLabel {
         text: title
-        anchors.centerIn: parent;
+        anchors.centerIn: parent
         font.pixelSize: TPixelSizePreset.PH4
         font.bold: true
     }
 
-    TIconButton{
-        id:btn
-        width: height;
-        height: parent.height -1;
-        anchors.right: parent.right;
+    TIconButton {
+        id: btn
+        width: height
+        height: parent.height - 1
+        anchors.right: parent.right
         icon.source: TAwesomeType.FA_ellipsis_v
-        icon.position: TPosition.Only;
-        backgroundComponent: null;
+        icon.position: TPosition.Only
+        backgroundComponent: null
         theme.groupName: "topbarbtn"
-        onClicked: themeMenu.openToGlobal(btn,0,btn.height + 5)
+        onClicked: themeMenu.openToGlobal(btn, 0, btn.height + 5)
     }
 
-    TDividerLine{
-        width: parent.width;
-        height: 1;
-        anchors.bottom: parent.bottom;
+    TDividerLine {
+        width: parent.width
+        height: 1
+        anchors.bottom: parent.bottom
         theme.groupName: "topbar"
     }
 
-    TPopoverMenu{
-        id:themeMenu;
-        bodyWidth: 120;
+    TPopoverMenu {
+        id: themeMenu
+        bodyWidth: 120
 
-        TPopoverElement{
-            type:"group"
+        TPopoverElement {
+            type: "group"
             text: "Choose theme"
         }
 
-        TPopoverElement{
+        TPopoverElement {
             text: "None"
-            otherData: "";
+            otherData: ""
             iconSource: TThemeManager.appThemeInvalid ? TAwesomeType.FA_check_circle_o : TAwesomeType.FA_circle_o
         }
 
         Component.onCompleted: {
-            var list = TThemeManager.themeList;
-            for(var i in list){
-                var obj = elementComponent.createObject(themeMenu);
-                obj.otherData = list[i].name;
-                obj.text = list[i].name;
+            var list = TThemeManager.themeList
+            for (var i in list) {
+                var obj = elementComponent.createObject(themeMenu)
+                obj.otherData = list[i].name
+                obj.text = list[i].name
                 addElement(obj)
             }
         }
 
-        Component{
-            id:elementComponent
-            TPopoverElement{
-                iconSource:  TThemeManager.appTheme === otherData ? TAwesomeType.FA_check_circle_o : TAwesomeType.FA_circle_o
+        Component {
+            id: elementComponent
+            TPopoverElement {
+                iconSource: TThemeManager.appTheme === otherData ? TAwesomeType.FA_check_circle_o : TAwesomeType.FA_circle_o
             }
         }
 
-        onTriggered: TThemeManager.appTheme = modelData.otherData;
+        onTriggered: TThemeManager.appTheme = modelData.otherData
     }
-
-
-
 }
