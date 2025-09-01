@@ -1,5 +1,4 @@
 #version 440
-
 precision mediump float;
 
 layout(location = 0) in vec2 qt_TexCoord0;
@@ -11,11 +10,12 @@ layout(binding = 2) uniform sampler2D maskSource;
 
 // 其他 uniform 变量可以放在另一个块中
 layout(std140, binding = 0) uniform UniformBlock {
+    mat4 qt_Matrix;
     float qt_Opacity;
 };
 
 void main() {
-    fragColor = texture(source, qt_TexCoord0.st)
-                * texture(maskSource, qt_TexCoord0.st).a
-                * qt_Opacity;
+    fragColor = texture(source, qt_TexCoord0)
+            * texture(maskSource, qt_TexCoord0).a
+            * qt_Opacity;
 }
