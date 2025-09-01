@@ -43,7 +43,6 @@ Item {
         fragmentShader: "qrc:/net.toou.2d/resource/font/svg.frag.qsb"
         anchors.fill: parent
         onStatusChanged: {
-            console.log(`@@ TSVGIcon ShaderEffect onStatusChanged status:${shaderItem.status}`)
             if (status === ShaderEffect.Error) {
                 console.log("Shader error: " + shaderItem.log)
             }
