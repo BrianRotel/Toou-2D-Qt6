@@ -8,19 +8,19 @@ Item {
         id: worker
         source: "qrc:/util.js"
 
-        onMessage: {
-            if (messageObject.error) {
-                TToast.showError("Error", TTimePreset.LongTime4s,
-                                 messageObject.info)
-            } else {
-                tbi.visible = false
-                if (messageObject.length > 0) {
-                    listview.model = messageObject
-                } else {
-                    warningitem.visible = true
-                }
-            }
-        }
+        onMessage: messageObject => {
+                       if (messageObject.error) {
+                           TToast.showError("Error", TTimePreset.LongTime4s,
+                                            messageObject.info)
+                       } else {
+                           tbi.visible = false
+                           if (messageObject.length > 0) {
+                               listview.model = messageObject
+                           } else {
+                               warningitem.visible = true
+                           }
+                       }
+                   }
     }
 
     TBusyIndicator {

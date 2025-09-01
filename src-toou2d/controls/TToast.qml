@@ -269,7 +269,7 @@ TObject {
                         visible: _super.moremsg
                         wrapMode: Text.WordWrap
 
-                        onContentWidthChanged: {
+                        onContentWidthChanged: contentWidth => {
                             width = contentWidth < mcontrol.maxWidth - 100 ? 220 : mcontrol.maxWidth
                         }
                     }

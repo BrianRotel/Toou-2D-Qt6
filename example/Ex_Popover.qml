@@ -39,41 +39,49 @@ Column {
         TPopoverElement {
             type: "group"
             text: "BUILDING BLOCKS"
+            otherData: ''
         }
 
         TPopoverElement {
             iconSource: TAwesomeType.FA_apple
             text: "Request"
+            otherData: ''
         }
 
         TPopoverElement {
             iconSource: TAwesomeType.FA_android
             text: "Collection"
+            otherData: ''
         }
 
         TPopoverElement {
             iconSource: TAwesomeType.FA_git
             text: "Environment"
+            otherData: ''
         }
 
         TPopoverElement {
             type: "group"
             text: "ADVANCED"
+            otherData: ''
         }
 
         TPopoverElement {
             iconSource: TAwesomeType.FA_music
             text: "Document"
+            otherData: ''
         }
 
         TPopoverElement {
             iconSource: TAwesomeType.FA_heartbeat
             text: "Mock Server"
+            otherData: ''
         }
 
         TPopoverElement {
             iconSource: TAwesomeType.FA_car
             text: "Monitor"
+            otherData: ''
         }
     }
 }

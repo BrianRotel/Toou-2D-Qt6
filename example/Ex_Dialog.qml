@@ -219,17 +219,17 @@ Column {
                 }
             }
 
-            onTriggered: {
-                if (button.label.text === "OK" && item.text) {
-                    TToast.showSuccess("Hi, " + item.text,
-                                       TTimePreset.ShortTime2s)
-                } else {
-                    TToast.showError("What's your name？",
-                                     TTimePreset.ShortTime2s)
-                }
+            onTriggered: button => {
+                             if (button.label.text === "OK" && item.text) {
+                                 TToast.showSuccess("Hi, " + item.text,
+                                                    TTimePreset.ShortTime2s)
+                             } else {
+                                 TToast.showError("What's your name？",
+                                                  TTimePreset.ShortTime2s)
+                             }
 
-                hideAndClose()
-            }
+                             hideAndClose()
+                         }
         }
 
         TDialog {

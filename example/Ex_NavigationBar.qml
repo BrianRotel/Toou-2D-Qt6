@@ -9,18 +9,22 @@ Column {
         itemWidth: 60
         TNavigationElement {
             text: "User"
+            otherData: ''
         }
 
         TNavigationElement {
             text: "Config"
+            otherData: ''
         }
 
         TNavigationElement {
             text: "Role"
+            otherData: ''
         }
 
         TNavigationElement {
             text: "Task"
+            otherData: ''
         }
 
         children: [
@@ -44,21 +48,25 @@ Column {
         TNavigationElement {
             iconSource: TAwesomeType.FA_apple
             text: "Apple"
+            otherData: ''
         }
 
         TNavigationElement {
             iconSource: TAwesomeType.FA_android
             text: "Android"
+            otherData: ''
         }
 
         TNavigationElement {
             iconSource: TAwesomeType.FA_github
             text: "Github"
+            otherData: ''
         }
 
         TNavigationElement {
             iconSource: TAwesomeType.FA_youtube
             text: "Youtube"
+            otherData: ''
         }
 
         children: [
